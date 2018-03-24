@@ -1,0 +1,149 @@
+<html>
+  <head>
+  	<title>me∞irl</title>
+  	<style>
+  		body {
+  			background-color: #0e0e0e;
+  		}
+
+      #meirl {
+        margin: 0 auto;
+        width: 700px;
+      }
+  	</style>
+  </head>
+  <body>
+    <div id="meirl">
+    </div>
+  	<script>
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+}
+
+var template = new Image();
+var lastName = "user";
+
+var nextNames = [ //reverse order, because reasons
+    "twitter",
+    "image minifier",
+    "api",
+    "bot",
+    "reddit",
+    "me_irl"
+];
+
+var shortList = [
+    "me_irl",
+    "twitter",
+    "reddit",
+    "facebook",
+    "wikipedia",
+    "buzzfeed",
+    "youtube",
+    "screen",
+    "browser",
+    "javascript",
+    "html",
+    "meow_irl",
+    "woof_irl"
+]
+
+var allNames = [
+    "me irl",
+    "undefined",
+    "router",
+    "Trump",
+    "Putin",
+    "Biden",
+    "Obama",
+    "Petco",
+    "Walmart",
+    "Jesus",
+    "God",
+    "GallowBoob",
+    "devtesla2",
+    "smart4301",
+    "pokemonconspiracies",
+    "andreaplanbee",
+    "Ughable",
+    "Kiloueka",
+    "hatmoose",
+    "aspmaster",
+    "pretty-inpunk",
+    "DeyTa",
+    "Tom Cruise",
+    "Brad Pitt",
+    "Lil Wayne",
+    "this never end this never ends this never ends this never end this never ends this never ends this never end this never ends this never ends this never end this never ends this never ends",
+    "Death",
+    "coming up with stuff to put here is hard",
+    "Minecraft",
+    "Overwatch",
+    "Fortnite",
+    "no one"
+]
+
+
+var lastColor = "hsl(0, 75%, 50%)";
+template.onload = function(){
+
+  var canvas = document.createElement('canvas');
+  canvas.width = template.width;
+  canvas.height = template.height;
+  var ctx = canvas.getContext("2d");
+
+  var container = document.getElementById("meirl");
+
+
+  var addNext = function() {
+    ctx.fillStyle = lastColor;
+    ctx.fillRect(40,20,250,240);
+    
+    lastColor = "hsl(" + Math.floor(Math.random() * 359) + ", 75%, 50%)";
+    ctx.fillStyle = lastColor;
+    ctx.fillRect(300,20,250,240);
+    ctx.drawImage(template, 0, 0);
+
+    ctx.fillStyle = "#000";
+    ctx.font = "20px \"Arial Black\", Gadget, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(lastName,170,40);
+    ctx.textAlign = "left";
+    lastName = nextNames.pop();
+
+    if (nextNames.length <= 0) {
+      shuffle(allNames);
+      nextNames = shortList.concat(allNames.slice(20));
+      shuffle(nextNames);
+    }
+
+    ctx.fillText(lastName,520,50);
+
+    var img = document.createElement('img');
+    img.src = canvas.toDataURL()
+    container.appendChild(img);
+  }
+
+  var checkNext = function() {
+   if (window.scrollY + 3000 > document.body.scrollHeight) {
+    addNext();
+    setTimeout(checkNext, 100);
+   }
+  }
+
+  checkNext();
+document.addEventListener("scroll", checkNext);
+
+};
+template.src = "template.png";
+  	</script>
+  </body>
+</html>
+<!-- edit: I mean Me too, thanks -->
