@@ -103,6 +103,8 @@ template.onload = function(){
 
 
   var addNext = function() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     ctx.fillStyle = lastColor;
     ctx.fillRect(40,20,250,240);
     
